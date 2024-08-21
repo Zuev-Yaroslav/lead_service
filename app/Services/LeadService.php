@@ -8,9 +8,9 @@ class LeadService
 {
     public static function getMeta() : array
     {
-        $new = Lead::where('status_id', 1)->count();
-        $at_work = Lead::where('status_id', 2)->count();
-        $completed = Lead::where('status_id', 3)->count();
+        $new = Lead::whereRelation('status', 'title', 'new')->count();
+        $at_work = Lead::whereRelation('status', 'title', 'at_work')->count();
+        $completed = Lead::whereRelation('status', 'title', 'completed')->count();
         $meta = ['meta' => [
             'total_quantity' => Lead::count(),
             'quantity' => [
