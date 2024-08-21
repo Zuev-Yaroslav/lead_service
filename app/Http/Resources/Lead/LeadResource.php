@@ -23,6 +23,7 @@ class LeadResource extends JsonResource
             'message' => $this->message,
             'status_id' => $this->status_id,
             'status_title' => $this->status->title,
+            'status_title_ru' => $this->status->title_ru,
             'created_at' => $this->created_at,
         ];
     }

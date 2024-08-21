@@ -2,25 +2,25 @@
     <Head title="Leads"/>
     <MainLayout>
         <div class="bg-white p-4 rounded xl:w-3/4 xl:mx-auto mx-3 min-h-screen shadow-md">
-            <h3 class="text-3xl mb-6">Leads</h3>
-            <div>Total: {{ leadsData.meta.total_quantity }}</div>
-            <div>Number of leads by status:</div>
+            <h3 class="text-3xl mb-6">Лиды</h3>
+            <div>Всего: {{ leadsData.meta.total_quantity }}</div>
+            <div>Количество лидов по статусу:</div>
             <div class="flex justify-start w-1/4 gap-3 text-nowrap">
-                <div>New: {{ leadsData.meta.quantity.new }}</div>
-                <div>At work: {{ leadsData.meta.quantity.at_work }}</div>
-                <div>Completed: {{ leadsData.meta.quantity.completed }}</div>
+                <div>Новый: {{ leadsData.meta.quantity.new }}</div>
+                <div>В работе: {{ leadsData.meta.quantity.at_work }}</div>
+                <div>Завершён: {{ leadsData.meta.quantity.completed }}</div>
             </div>
             <div class="overflow-y-auto">
                 <table class="table-auto w-full border-collapse">
                     <thead class="text-left text-nowrap border-b border-gray-400">
                         <tr>
                             <th class="p-3">ID</th>
-                            <th class="p-3">First Name</th>
-                            <th class="p-3">Last Name</th>
+                            <th class="p-3">Имя</th>
+                            <th class="p-3">Фамилия</th>
                             <th class="p-3">Email</th>
-                            <th class="p-3">Phone</th>
-                            <th class="p-3">Created At</th>
-                            <th class="p-3">Status</th>
+                            <th class="p-3">Номер телефона</th>
+                            <th class="p-3">Дата создания</th>
+                            <th class="p-3">Статус</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -34,14 +34,14 @@
                             <td class="p-3">{{ new Date(lead.created_at).toLocaleString() }}</td>
                             <td class="p-3">
                                 <select @change="updateLeadStatus(lead.id, lead.status_id)" v-model="lead.status_id" class="py-1 rounded border-gray-300">
-                                    <option v-for="status in statuses" :value="status.id">{{status.title}}</option>
+                                    <option v-for="status in statuses" :value="status.id">{{status.title_ru}}</option>
                                 </select>
                             </td>
                             <td class="p-3">
-                                <Link :href="route('leads.edit', lead.id)" class="p-2 bg-green-400 text-white rounded block text-center hover:bg-green-500">Edit</Link>
+                                <Link :href="route('leads.edit', lead.id)" class="p-2 bg-green-400 text-white rounded block text-center hover:bg-green-500">Изменить</Link>
                             </td>
                             <td class="p-3">
-                                <a href="#" @click.prevent="destroyLead(lead.id)" class="p-2 bg-red-400 text-white rounded block text-center hover:bg-red-500">Delete</a>
+                                <a href="#" @click.prevent="destroyLead(lead.id)" class="p-2 bg-red-400 text-white rounded block text-center hover:bg-red-500">Удалить</a>
                             </td>
                         </tr>
                     </tbody>
@@ -84,7 +84,7 @@ export default {
         updateLeadStatus(id, status_id) {
             axios.patch(route('leads.update_status', id), {status_id})
                 .then(res => {
-                    toast.success('Is saved', {
+                    toast.success('Статус изменён', {
                         autoClose: 2000
                     })
                     this.getLeads()

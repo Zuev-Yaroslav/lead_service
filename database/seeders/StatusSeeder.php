@@ -13,8 +13,8 @@ class StatusSeeder extends Seeder
      */
     public function run(): void
     {
-        Status::firstOrCreate(['id' => 1,'title' => 'new']);
-        Status::firstOrCreate(['id' => 2,'title' => 'at_work']);
-        Status::firstOrCreate(['id' => 3,'title' => 'completed']);
+        Status::firstOrCreate(['id' => 1,'title' => 'new'], ['title_ru' => 'Новый']);
+        Status::firstOrCreate(['id' => 2,'title' => 'at_work'], ['title_ru' => 'В работе']);
+        Status::firstOrCreate(['id' => 3,'title' => 'completed'], ['title_ru' => 'Завершён']);
     }
 }
