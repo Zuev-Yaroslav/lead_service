@@ -43,7 +43,6 @@
 </template>
 
 <script>
-import InputMask from 'primevue/inputmask';
 import MainLayout from "@/Layouts/MainLayout.vue";
 import {toast} from "vue3-toastify";
 import {Head} from "@inertiajs/vue3";
